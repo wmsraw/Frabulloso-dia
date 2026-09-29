@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Willi & Dari · nuestro chat en números</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFEEF3;--panel:#FFFFFF;--ink:#3B1234;--mute:#7C5878;--rose:#E23E6B;--peach:#FF9A6B;--lil:#8B6CF0;--line:#F3CFDC;--glow:rgba(255,154,107,.35);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#170B27;--panel:#251340;--ink:#FFF1F3;--mute:#BFA9D6;--rose:#FF6F91;--peach:#FFB48A;--lil:#B9A0FF;--line:#3A2260;--glow:rgba(255,111,145,.25)}}
+:root[data-theme="dark"]{--bg:#170B27;--panel:#251340;--ink:#FFF1F3;--mute:#BFA9D6;--rose:#FF6F91;--peach:#FFB48A;--lil:#B9A0FF;--line:#3A2260;--glow:rgba(255,111,145,.25)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.55 'Bricolage Grotesque',system-ui,sans-serif;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--lil);outline-offset:3px}
+section{max-width:860px;margin:0 auto;padding:64px 22px 8px}
+h2{font-weight:800;font-size:clamp(1.8rem,6vw,2.6rem);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+.sub{color:var(--mute);margin:0 0 26px;max-width:52ch}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px;background:radial-gradient(ellipse at 50% 30%,var(--glow),transparent 65%)}
+.hero h1{font-weight:800;font-size:clamp(3.2rem,16vw,8.5rem);line-height:.9;letter-spacing:-.045em;margin:0}
+.hero h1 span{color:var(--rose)}
+.hero p{color:var(--mute);margin:14px 0 26px;max-width:36ch}
+.cd{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.cd div{background:var(--panel);border:1px solid var(--line);border-radius:22px 22px 22px 6px;padding:12px 16px;min-width:76px}
+.cd b{display:block;font-size:2.1rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.cd small{color:var(--mute);font-size:.8rem}
+.big{margin-top:30px;border:0;background:var(--rose);color:#fff;border-radius:999px;padding:14px 28px;font-weight:600;font-size:1.1rem;box-shadow:0 8px 24px var(--glow);transition:transform .15s}
+.big:active{transform:scale(.94)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{position:relative;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:26px 26px 8px 26px;padding:20px 20px 18px;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.card:nth-child(even){border-radius:8px 26px 26px 26px}
+.card .n{font-size:2.9rem;font-weight:800;line-height:1;color:var(--rose);font-variant-numeric:tabular-nums}
+.card .l{font-weight:600}
+.card .f{display:none;color:var(--mute);font-size:.95rem;margin-top:8px}
+.card.on .f{display:block}
+.card::after{content:"toca";position:absolute;top:14px;right:16px;font-size:.75rem;color:var(--mute)}
+.card.on::after{content:"✕"}
+.leg{display:flex;gap:16px;margin:0 0 14px;font-weight:600}
+.leg i,.k{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px}
+.w{background:var(--rose)}.d{background:var(--lil)}
+.duel{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;margin:0 0 4px}
+.duel span{font-weight:800;font-variant-numeric:tabular-nums;min-width:3.4rem}
+.duel span:last-child{text-align:right}
+.pill{height:18px;border-radius:99px;background:var(--lil);overflow:hidden}
+.pill i{display:block;height:100%;width:0;background:var(--rose);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.dl{color:var(--mute);font-size:.9rem;margin:12px 0 2px}
+.chart{display:flex;align-items:flex-end;gap:2px;height:190px;padding:14px 12px 0;background:var(--panel);border:1px solid var(--line);border-radius:22px}
+.chart button{flex:1;min-width:0;padding:0;border:0;border-radius:4px 4px 0 0;background:var(--lil);display:flex;flex-direction:column;justify-content:flex-end;opacity:.85}
+.chart button i{display:block;background:var(--rose);width:100%;border-radius:0}
+.chart button:hover,.chart button:focus-visible,.chart button.sel{opacity:1;filter:brightness(1.15)}
+.tip{min-height:1.6em;margin:10px 4px 26px;font-weight:600}
+.axis{display:flex;justify-content:space-between;color:var(--mute);font-size:.8rem;padding:4px 6px 0}
+.tl{list-style:none;margin:0;padding:0 0 0 22px;border-left:3px solid var(--rose)}
+.tl li{position:relative;margin:0 0 22px;padding-left:14px}
+.tl li::before{content:"";position:absolute;left:-32px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:3px solid var(--rose)}
+.tl b{display:inline-block;background:var(--rose);color:#fff;border-radius:99px;padding:1px 12px;font-size:.9rem;margin-bottom:4px}
+.tl p{margin:2px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:6px 16px;font-weight:600}
+.chip.W{border-color:var(--rose)}.chip.D{border-color:var(--lil)}
+.chip[aria-pressed=true]{background:var(--rose);color:#fff}
+.chip.D[aria-pressed=true]{background:var(--lil)}
+.tabs{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:none;border-radius:99px;padding:6px 16px;font-weight:600}
+.tab[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:6px 30px 30px 30px;padding:26px 24px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .3s}
+.note q{font:600 clamp(1.7rem,6vw,2.4rem)/1.15 'Caveat',cursive;quotes:"“" "”"}
+.note cite{font-style:normal;color:var(--mute);margin-top:14px;display:block}
+.ctl{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.ghost{border:1px solid var(--rose);background:none;color:var(--rose);border-radius:99px;padding:9px 20px;font-weight:600}
+.fact{background:var(--rose);color:#fff;border-radius:30px 6px 30px 30px;padding:26px 24px;font-size:1.3rem;font-weight:600;line-height:1.3;min-height:150px}
+.end{text-align:center;padding:90px 20px 70px}
+.end h2{font-size:clamp(3rem,15vw,7rem);color:var(--rose);margin:0}
+.end p{color:var(--mute)}
+.fh{position:fixed;pointer-events:none;z-index:9;animation:fly 1.6s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(20deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){.pill i{transition:none}.note{transition:none}}
+</style></head><body>
+<header class="hero">
+<h1>Willi <span>&amp;</span> Dari</h1>
+<p>Nuestro chat de WhatsApp, contado con números reales desde el 7 de agosto.</p>
+<div class="cd" aria-label="Tiempo desde el primer mensaje"><div><b>0</b><small>días</small></div><div><b>0</b><small>horas</small></div><div><b>0</b><small>minutos</small></div><div><b>0</b><small>segundos</small></div></div>
+<button class="big" id="hb">Mandar amor ♥</button>
+</header>
+
+<section><h2>Nuestros números</h2><p class="sub">Toca cada tarjeta para ver el dato escondido.</p><div class="grid" id="cards"></div></section>
+
+<section><h2>Willi contra Dari</h2><p class="sub">Un duelo amistoso. Los dos ganamos, pero mira quién habla más de qué.</p>
+<div class="leg"><span><i class="k w"></i>Willi</span><span><i class="k d"></i>Dari</span></div><div id="duel"></div></section>
+
+<section><h2>Cuándo nos escribimos</h2><p class="sub">Cada barra es un día. Rosa es Willi, lila es Dari. Toca una barra.</p>
+<div class="chart" id="daily"></div><div class="axis"><span>7 ago</span><span>28 sep</span></div><div class="tip" id="tip1" aria-live="polite"></div>
+<h2 style="font-size:1.6rem">A qué hora</h2><p class="sub">Mensajes por hora del día, de las 0 a las 23.</p>
+<div class="chart" id="hours"></div><div class="axis"><span>0 h</span><span>12 h</span><span>23 h</span></div><div class="tip" id="tip2" aria-live="polite"></div></section>
+
+<section><h2>Nuestra línea del tiempo</h2><p class="sub">Los primeros momentos, con fecha.</p>
+<ol class="tl">
+<li><b>7 ago</b><p>Arranca el chat de madrugada, con planes de entrenar juntos a las 6:20.</p></li>
+<li><b>9 ago</b><p>Primer “te quiero mucho”.</p></li>
+<li><b>13 ago</b><p>Llega la playlist “DARICITA”, el primer “mi amor”, el primer “bebé” y el primer “te amo” de Willi.</p></li>
+<li><b>14 ago</b><p>“Feliz 7 días de conocernos”.</p></li>
+<li><b>15 ago</b><p>Primer “ya te extraño”. Van 71 en total.</p></li>
+<li><b>17 ago</b><p>Dari responde con su primer “te amo”: “te amo mássss mi corazoncito hermoso”.</p></li>
+<li><b>30 ago</b><p>Dari escribe: “gracias por llegar a mi vida”.</p></li>
+<li><b>4 sep</b><p>Willi te manda una página web entera llamada “Nosotros”. Es el mensaje más largo del chat: 13,009 caracteres.</p></li>
+<li><b>7 sep</b><p>Primer mesesario, con un mixtape digital: “te amo, en este universo y todos los que existan”.</p></li>
+<li><b>15 sep</b><p>Nuestro día récord: 676 mensajes.</p></li></ol></section>
+
+<section><h2>Cómo nos decimos</h2><p class="sub">El tamaño es cuántas veces. Toca un apodo.</p>
+<div class="chips" id="chips"></div><p class="tip" id="tip3" aria-live="polite"></p></section>
+
+<section><h2>Notitas del chat</h2><p class="sub">Frases nuestras que valen la pena guardar.</p>
+<div class="tabs"><button class="tab" data-f="" aria-pressed="true">Todas</button><button class="tab" data-f="W" aria-pressed="false">De Willi</button><button class="tab" data-f="D" aria-pressed="false">De Dari</button></div>
+<div class="note" id="note"><q></q><cite></cite></div>
+<div class="ctl"><button class="ghost" id="prev">Anterior</button><button class="ghost" id="next">Otra notita ♥</button></div></section>
+
+<section><h2>¿Sabías que…?</h2><p class="sub">Datos curiosos sacados de las 14,416 líneas.</p>
+<div class="fact" id="fact" aria-live="polite"></div><div class="ctl"><button class="ghost" id="nf">Otro dato</button></div></section>
+
+<div class="end"><h2>Te amo</h2><p>Hecho con los mensajes de los dos.</p><button class="big" id="hb2">Mandar más amor ♥</button></div>
+
+<script>
+const S={"total": 14416, "w": 8346, "d": 6070, "words": [36907, 21091], "media": [2129, 917], "jaja": [94, 308], "teamo": [478, 248], "amor": [673, 788], "mivida": [354, 162], "princesa": 258, "nina": 167, "hermosa": 310, "bebe": 138, "amorcito": 186, "extr": 71, "gym": 79, "oki": 388, "bd": 53, "bn": 26, "gracias": 180, "days": 53, "daily": [[148, 120], [82, 70], [65, 54], [174, 112], [69, 50], [80, 50], [173, 123], [146, 102], [97, 58], [127, 85], [126, 65], [76, 52], [163, 121], [272, 219], [159, 112], [117, 83], [181, 126], [238, 177], [235, 174], [150, 100], [240, 178], [238, 191], [229, 176], [62, 48], [252, 193], [341, 227], [249, 206], [159, 127], [217, 165], [164, 135], [46, 32], [181, 120], [159, 95], [225, 189], [174, 153], [70, 70], [90, 72], [7, 1], [171, 131], [382, 294], [137, 78], [256, 213], [230, 150], [61, 39], [17, 9], [47, 32], [84, 50], [204, 151], [252, 162], [269, 163], [160, 98], [25, 10], [70, 59]], "hrs": [636, 221, 85, 20, 6, 657, 408, 399, 588, 800, 710, 921, 725, 846, 721, 605, 895, 920, 786, 649, 672, 432, 809, 905], "wd": [2148, 2288, 2103, 2701, 2550, 1731, 895]};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const dl=i=>{const d=new Date(2026,7,7+i);return d.getDate()+' '+MES[d.getMonth()]};
+const f=n=>n.toLocaleString('es-MX'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hm=m=>Math.floor(m/60)+' h '+Math.round(m%60)+' min';
+const te=S.teamo[0]+S.teamo[1],pal=S.words[0]+S.words[1],med=S.media[0]+S.media[1],am=S.amor[0]+S.amor[1],ri=[410,605];
+const tot=a=>a[0]+a[1],mx=a=>Math.max(...a);
+const t0=new Date(2026,7,7,5,37).getTime();
+function tick(){const s=Math.floor((Date.now()-t0)/1000),v=[Math.floor(s/86400),Math.floor(s%86400/3600),Math.floor(s%3600/60),s%60];$$('.cd b').forEach((b,i)=>b.textContent=String(v[i]).padStart(i?2:1,'0'))}
+tick();setInterval(tick,1000);
+function hearts(x,y){if(reduce)return;for(let i=0;i<14;i++){const h=document.createElement('span');h.className='fh';h.textContent=['♥','💗','💕','🩷'][i%4];h.style.cssText=`left:${x}px;top:${y}px;--dx:${(Math.random()-.5)*280}px;--dy:${-120-Math.random()*260}px;font-size:${16+Math.random()*22}px`;document.body.appendChild(h);setTimeout(()=>h.remove(),1800)}}
+['hb','hb2'].forEach(id=>$('#'+id).onclick=e=>{const r=e.currentTarget.getBoundingClientRect();hearts(r.left+r.width/2,r.top)});
+const cards=[
+[S.total,'mensajes','Un promedio de '+Math.round(S.total/S.days)+' por día, en '+S.days+' días.'],
+[pal,'palabras','Alcanzan para un libro de casi '+Math.round(pal/300)+' páginas.'],
+[te,'te amo','Uno cada '+hm(S.days*1440/te)+', día y noche.'],
+[am,'veces “amor”','Willi lo escribió '+f(S.amor[0])+' veces y Dari '+f(S.amor[1])+'.'],
+[med,'fotos, audios y stickers','Willi mandó '+(S.media[0]/S.media[1]).toFixed(1)+' veces más que Dari.'],
+[S.oki,'“oki”','Nuestra palabra oficial. Dari la usa más.']];
+$('#cards').innerHTML=cards.map((c,i)=>`<button class="card" aria-pressed="false"><span class="n" data-n="${c[0]}">0</span><span class="l">${c[1]}</span><span class="f">${c[2]}</span></button>`).join('');
+$$('.card').forEach(b=>b.onclick=()=>{b.classList.toggle('on');b.setAttribute('aria-pressed',b.classList.contains('on'))});
+const rows=[['Mensajes',S.w,S.d],['Palabras',...S.words],['“Te amo”',...S.teamo],['Risas (jaja)',...ri],['Fotos, audios y stickers',...S.media],['“Mi vida”',...S.mivida]];
+$('#duel').innerHTML=rows.map(r=>`<p class="dl">${r[0]}</p><div class="duel"><span>${f(r[1])}</span><div class="pill"><i data-p="${r[1]/(r[1]+r[2])*100}"></i></div><span>${f(r[2])}</span></div>`).join('');
+function bars(el,arr,lab,tip,sel){const m=mx(arr.map(tot));$(el).innerHTML=arr.map((a,i)=>`<button style="height:${Math.max(3,tot(a)/m*100)}%" data-i="${i}" aria-label="${lab(i,a)}"><i style="height:${a[0]/tot(a)*100}%"></i></button>`).join('');
+const show=i=>{$$(el+' button').forEach(b=>b.classList.toggle('sel',b.dataset.i==i));$(tip).textContent=lab(i,arr[i])};
+$$(el+' button').forEach(b=>{const g=()=>show(+b.dataset.i);b.onclick=g;b.onfocus=g;b.onmouseenter=g});show(sel)}
+const dd=S.daily;bars('#daily',dd,(i,a)=>dl(i)+': '+f(tot(a))+' mensajes (Willi '+f(a[0])+', Dari '+f(a[1])+')',' #tip1'.trim(),dd.findIndex(a=>tot(a)==mx(dd.map(tot))));
+const hh=S.hrs.map(n=>[n,0]);
+const hl=(i,a)=>i+':00 a '+i+':59 → '+f(a[0])+' mensajes'+(i==5?'. A esa hora ya estamos despiertos.':'');
+bars('#hours',hh,hl,'#tip2',S.hrs.indexOf(mx(S.hrs)));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const el=e.target;
+if(el.dataset.p){el.style.width=el.dataset.p+'%';return}
+const n=+el.dataset.n,t=reduce?0:1300,s=performance.now();(function st(now){const p=t?Math.min(1,(now-s)/t):1;el.textContent=f(Math.round(n*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(st)})(s)}),{threshold:.4});
+$$('.n,.pill i').forEach(e=>io.observe(e));
+const ch=[['hermosa',S.hermosa,'W'],['princesa / princesita',S.princesa,'W'],['amorcito',S.amorcito,'W'],['mi niña',S.nina,'W'],['amor',S.amor[0],'W'],['amor',S.amor[1],'D'],['mi vida',S.mivida[1],'D'],['bebé',S.bebe,'D']];
+$('#chips').innerHTML=ch.map((c,i)=>`<button class="chip ${c[2]}" data-i="${i}" aria-pressed="false" style="font-size:${.95+c[1]/800*1.5}rem">${c[0]}</button>`).join('');
+$$('.chip').forEach(b=>b.onclick=()=>{$$('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');const c=ch[b.dataset.i];$('#tip3').textContent=(c[2]=='W'?'Willi le dijo':'Dari le dijo')+' “'+c[0]+'” '+(c[2]=='W'?'a Dari ':'a Willi ')+f(c[1])+' veces.'});
+$('#tip3').textContent='Toca uno para ver quién lo dice más.';
+const Q=[['D','17 ago','te amo mássss mi corazoncito hermoso'],['W','13 ago','le platico de la increíble chica que conocí'],['W','17 ago','eres la mujer más increíble que he conocido'],['D','25 ago','créeme que no tengo ojos para nadie más, estoy muy enamorada de ti'],['W','25 ago','eres una niña tan linda, eres un amor, te mereces el universo, y no descansaré hasta dártelo'],['D','30 ago','amo cada parte de lo que eres'],['D','30 ago','gracias por llegar a mi vida y demostrarme que la intensidad no me disgusta, solo no te había conocido a ti'],['W','30 ago','contigo soy lo que jamás pude ser sin ti, contigo soy mejor'],['D','3 sep','eres un amor Will y creo que lo sabes perfectamente'],['W','7 sep','TE AMO DARINA, EN ESTE UNIVERSO Y TODOS LOS QUE EXISTAN'],['W','9 sep','soy un ser completo por mí mismo, pero contigo en mi vida me siento mejor'],['W','9 sep','el amor no se agradece, amo lo que eres Darina'],['W','14 sep','gracias por venir a mi casita hoy, estoy muy feliz contigo, me la paso bien siempre'],['D','15 sep','te adoro infinitamente amor'],['W','15 sep','no quiero ser perfecto, quiero ser lo correcto para ti'],['W','19 sep','me parece increíble que una mujer tan increíble se fijara en mí']];
+let flt='',qi=0,cur=Q;
+function note(){const n=$('#note');n.querySelector('q').textContent=cur[qi][2];n.querySelector('cite').textContent='— '+(cur[qi][0]=='W'?'Willi':'Dari')+', '+cur[qi][1];if(!reduce){n.style.transform='rotate('+(Math.random()*3-1.5)+'deg)'}}
+const go=d=>{qi=(qi+d+cur.length)%cur.length;note()};
+$('#next').onclick=e=>{go(1);const r=e.currentTarget.getBoundingClientRect();hearts(r.left+r.width/2,r.top)};$('#prev').onclick=()=>go(-1);
+$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');cur=b.dataset.f?Q.filter(q=>q[0]==b.dataset.f):Q;qi=0;note()});
+note();
+const F=['Nos escribimos los '+S.days+' días, sin faltar ninguno.','Nuestro día récord fue el 15 de septiembre: 676 mensajes.','Los jueves son los días más platicadores: '+f(S.wd[3])+' mensajes.','Los domingos somos más tranquilos, pero aun así juntamos '+f(S.wd[6])+' mensajes.','La semana más intensa fue del 28 de agosto al 3 de septiembre: 2,698 mensajes.','Willi dijo “hermosa” '+S.hermosa+' veces. Dari dijo “bebé” '+S.bebe+' veces.','Nos hemos dicho “buenos días” '+S.bd+' veces y “gracias” '+S.gracias+' veces.','Dari se ríe más: '+ri[1]+' risas contra '+ri[0]+' de Willi.','A las 5 de la mañana hay '+S.hrs[5]+' mensajes. El gym nos junta antes de que salga el sol.','Willi escribió primero en 40 de los 53 días.'];
+let fi=0;const sf=()=>$('#fact').textContent=F[fi];sf();$('#nf').onclick=()=>{fi=(fi+1)%F.length;sf()};
+</script></body></html>
